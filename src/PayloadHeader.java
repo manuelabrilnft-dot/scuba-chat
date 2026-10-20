@@ -16,7 +16,6 @@ public class PayloadHeader implements Header {
         this.sequenceNumber = sequenceNumber;
     }
 
-    // ↓ FIX THIS SHIT AFTER HEADER CHANGES ↓
     @Override
     public int assemble() {
         int output = 0;
