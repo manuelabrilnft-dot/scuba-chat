@@ -96,7 +96,6 @@ public class MyProtocol {
                         ByteBuffer toSend = ByteBuffer.allocate(32); // copy data without newline / returns
                         Message msg;
                         Header header;
-                        // ↓ FIX THIS SHIT AFTER HEADER CHANGES! ↓
                         header = new PayloadHeader(false,parameters.get("sourceId"), 1, isLast, 1, fragmentSequence);
                         toSend.putShort((short) header.assemble());
                         toSend.put( temp.array() , i, fragmentSize); // enter data without newline / returns
@@ -642,7 +641,6 @@ public class MyProtocol {
                             } else {
                                 if (amNewcomer) {
                                     if (!isNewcomer(bitmap) && isCollision) {
-                                        System.out.println("BULLSHIT");
                                         int finalBitmap = updateKnownIds(0, bitmap, parameters.get("sourceId"), sourceId);
                                         randomId(finalBitmap, parameters, true);
                                         knownIds.put(sourceId, sourceId);
