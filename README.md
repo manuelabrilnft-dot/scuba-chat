@@ -118,26 +118,6 @@ The node connects to `netsys.ewi.utwente.nl:8954` on frequency 2600. Change
 point somewhere else. Start one node per terminal, type a message and press
 enter to send it.
 
-## Known issues
-
-Found by reading the code. The emulator is only reachable from inside the
-university network, so these are not all confirmed by running it.
-
-**Token header fields parse wrong.** In `Header.parse` the next hop and
-destination are read as `header & 0b11100000 >>> 5`. In Java `>>>` binds tighter
-than `&`, so this shifts the mask instead of the value and both fields come out
-as the low three bits. The mask needs its own brackets.
-
-**`TokenHeader` drops the nonce.** The constructor takes a nonce and never
-assigns it, so `getNonce` returns 0 on a parsed token.
-
-**Debug output is left in.** `HeartbeatHeader.assemble` prints the raw header on
-every call, which fills the terminal during a chat.
-
-**There are two copies of the source.** `src/` is what the Makefile builds.
-`CustomNetworkProtocol/` is an older copy that has drifted and is not built by
-anything.
-
 ## License
 
 MIT. See `LICENSE`.
